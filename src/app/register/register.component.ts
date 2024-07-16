@@ -3,6 +3,7 @@ import { FashionService } from '../fashion.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent {
 
   constructor(
     private fashionService: FashionService,
-    private router: Router
+    private router: Router,
+    private message: NzMessageService
   ) {}
 
   registerForm: FormGroup = new FormGroup({
@@ -34,6 +36,7 @@ export class RegisterComponent {
   onSubmit() {
     const {username, password} = this.registerForm.value;
     this.fashionService.register(username, password).subscribe( data => {
+      this.message.success('Tạo tài khoản thành công');
       this.router.navigate(['/login']);
     })
   }
