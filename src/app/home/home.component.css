@@ -1,0 +1,144 @@
+.container {
+  margin-top: 20px;
+}
+
+.search-item {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.search-item input {
+  width: 30%;
+  outline: none;
+  padding: 4px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 1px solid #DDDD;
+  transition: all 0.3s ease;
+}
+
+.search-item input::placeholder {
+  color: #aaa;
+}
+
+.search-item input:focus {
+  border-color: #4285F4;
+  box-shadow: 0 0 5px rgba(77, 141, 243, 0.5);
+}
+
+.container-title {
+  text-align: center;
+  margin: 30px 0;
+}
+
+h3 {
+  color: #023e67;
+  font-size: 24px;
+}
+
+p {
+  color: #555555;
+}
+
+.content-product {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px;
+  margin: 20px 40px;
+}
+
+.item-content {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(148, 148, 151, 0.2);
+}
+
+.item-content:hover {
+  cursor: pointer;
+}
+
+.item-content img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #F83758;
+}
+
+.item-title {
+  text-align: center;
+  color: #1D1D1D;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.item-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.old-price {
+  margin:5px 10px;
+  text-decoration: line-through;
+}
+
+.new-price {
+  color: #024E82;
+  margin:5px 10px;
+}
+.container-title-topseller {
+  margin: 40px 0 30px 0;
+  text-align: center;
+}
+
+.content-topseller {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px;
+  margin: 10px 40px;
+}
+
+.service {
+  margin: 80px 40px 60px 40px;
+}
+
+.support, .delivery, .return, .payment {
+  display: flex;
+  padding: 10px 12px;
+  border: 1px solid #024E82;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.support:hover, .delivery:hover, .return:hover, .payment:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.delivery-icon, .support-icon, .return-icon, .payment-icon {
+  margin-right: 10px;
+  color: #024E82;
+  font-size: 20px;
+}
+
+.delivery-content h4, .support-content h4,
+.return-content h4, .payment-content h4 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.delivery-content p, .support-content p,
+.return-content p, .payment-content p {
+  margin-bottom: 0;
+}
+
+.paginate {
+  text-align: center;
+}
+

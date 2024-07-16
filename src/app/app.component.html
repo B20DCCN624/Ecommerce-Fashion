@@ -1,0 +1,95 @@
+<div class="container" *ngIf="router.url !== '/login' && router.url !== '/register'">
+  <div>
+    <a href="/home"><p>North Start</p></a>
+  </div>
+  <div class="container-nav">
+    <a href="/home">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact Us</a>
+  </div>
+
+  <div class="container-menu">
+    <div>
+      <a nz-dropdown [nzDropdownMenu]="menu">
+        <i class="fa-regular fa-user icon-user"></i>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item>Trang cá nhân</li>
+          <li nz-menu-item>Trợ giúp</li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item>
+            <a href="/">Log out</a>
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+
+    <i class="fa-solid fa-cart-shopping" [routerLink]="['/cart']"></i>
+
+    <div >
+      <a nz-dropdown [nzDropdownMenu]="menuIcon">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <nz-dropdown-menu #menuIcon="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item>1st menu item</li>
+          <li nz-menu-item>2nd menu item</li>
+          <li nz-menu-item>3rd menu item</li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+    <!-- <ul nz-menu nzMode="horizontal">
+      <li nz-submenu nzPlacement="bottomLeft" [nzTitle]="menuIcon">
+        <ng-template #menuIcon>
+          <i class="fa-solid fa-bars"></i>
+        </ng-template>
+        <ul>
+          <li nz-menu-group nzTitle="Item 1">
+            <ul>
+              <li nz-menu-item>Option 1</li>
+              <li nz-menu-item>Option 2</li>
+            </ul>
+          </li>
+          <li nz-menu-group nzTitle="Item 2">
+            <ul>
+              <li nz-menu-item>Option 3</li>
+              <li nz-menu-item>Option 4</li>
+              <li nz-submenu nzTitle="Sub Menu">
+                <ul>
+                  <li nz-menu-item nzDisabled>Option 5</li>
+                  <li nz-menu-item>Option 6</li>
+                </ul>
+              </li>
+              <li nz-submenu nzDisabled nzTitle="Disabled Sub Menu">
+                <ul>
+                  <li nz-menu-item>Option 5</li>
+                  <li nz-menu-item>Option 6</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul> -->
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer" *ngIf="router.url !== '/login' && router.url !== '/register'">
+  <div class="footer-content">
+    <p>&copy; 2024 North Start. All rights reserved.</p>
+    <div class="footer-nav">
+      <a href="">Privacy Policy</a>
+      <a href="">Terms of Service</a>
+      <a href="">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-payment">
+    <i class="fa-brands fa-cc-visa"></i>
+    <i class="fa-brands fa-cc-paypal"></i>
+  </div>
+</footer>

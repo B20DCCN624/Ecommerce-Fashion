@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="container" *ngIf="formData">
+    <div class="container-image">
+      <img *ngIf="formData.image" [src]="formData.image" [alt]="formData.name">
+      <!-- <img [src]="formData.image" alt=""> -->
+    </div>
+    <div class="container-detail">
+      <nz-breadcrumb class="nz-breadcrumb">
+        <nz-breadcrumb-item [routerLink]="['/home']">SHOP</nz-breadcrumb-item>
+        <nz-breadcrumb-item [routerLink]="['/home']">HOME</nz-breadcrumb-item>
+        <nz-breadcrumb-item>DETAIL</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <h3>{{ formData.name }}</h3>
+      <div class="rating">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]" [class.filled]="star <= +formData.rating">
+          ☆
+        </span>
+        <div class="rating-star">({{ formData.rating }})</div>
+      </div>
+      <div class="price">
+        <span class="old-price">${{ formData.oldPrice }}.00</span>
+        <span class="new-price">${{ formData.newPrice }}.00</span>
+      </div>
+      <div class="description">
+        <p>{{ formData.description }}</p>
+      </div>
+      <select id="size">
+        <option value="" disabled selected>Select Size</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+      </select>
+      <div>
+        <button class="btn-add" (click)="addToCart()">ADD TO CART</button>
+      </div>
+      <div class="category">Category:
+        <p>{{ formData.category }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <nz-tabset>
+      <nz-tab nzTitle="Description">
+        <p>A key objective is engaging digital marketing customers and allowing them to interact with the brand through servicing and delivery of digital media.
+          Information is easy to access at a fast rate through the use of digital communications.Users with access to the Internet can use many digital mediums,
+          such as Facebook, YouTube, Forums, and Email etc. Through Digital communications it creates a Multi-communication channel where information can be
+          quickly exchanged around the world by anyone without any regard to whom they are.[28] Social segregation plays no part through social mediums due to
+          lack of face to face communication and information being wide spread instead to a selective audience.</p>
+      </nz-tab>
+      <nz-tab nzTitle="Reviews">
+        <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+          <ng-template #item let-item>
+            <nz-comment [nzAuthor]="item.author" [nzDatetime]="item.datetime">
+              <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+              <nz-comment-content>
+                <p>{{ item.content }}</p>
+              </nz-comment-content>
+              <nz-comment-action>Reply to</nz-comment-action>
+            </nz-comment>
+          </ng-template>
+        </nz-list>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
+
+

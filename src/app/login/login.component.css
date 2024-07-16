@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-container {
+  width: 38%;
+  padding: 20px 40px;
+  border-radius: 20px;
+  border: 1px solid #DDDDDD;
+  box-shadow: 10px 10px 10px rgba(150, 150, 150, 0.4);
+}
+
+.login-container h2 {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 30px 0;
+  color: #F83758;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  color: #555555;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.btn-signin {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 8px 0;
+  border-radius: 8px;
+  background-color: #4285F4;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 40px 0 30px 0;
+  cursor: pointer;
+}
+
+.btn-signin:hover {
+  background-color: #2f63b7;
+}
+
+p {
+  text-align: center;
+  font-size: 14px;
+  color: #aaa8a8;
+}
+
+.option-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-login img {
+  width: 48px;
+  height: 48px;
+  margin: 10px;
+}
+
+.signup {
+  margin-top: 30px;
+}
+
+.signup p {
+  font-weight: 500;
+  color: black;
+}
+
+.signup a {
+  color: #F83758;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
+  display: flex;
+}
+
+.error-message::before {
+  content: "⚠ ";
+  margin-right: 5px;
+}
+
+.btn-signin:disabled {
+  background-color: #cccccc;
+  border: #cccccc;
+  color: #8b8989;
+}
+

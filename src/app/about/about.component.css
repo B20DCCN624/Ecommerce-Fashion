@@ -1,0 +1,56 @@
+
+
+.container-title {
+  margin-bottom: 40px;
+}
+.container-title img{
+  width: 100%;
+  height: auto;
+}
+
+h3 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 50px 0;
+  color: #024877;
+}
+
+.container-founders {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  margin: 0 100px;
+}
+
+.content-founder img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.content-founder p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.container-testimonials {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.content-testimonials {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.content-testimonials img {
+  margin-right: 50px;
+}
+
+.content-testimonials p{
+  font-weight: 500;
+  font-size: 16px;
+}

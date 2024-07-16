@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Create an Account</h2>
+    <form [formGroup]="registerForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" formControlName="username"
+              placeholder="Username or email"/>
+
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+          <div *ngIf="username?.errors?.['required']">Username không được để trống</div>
+          <div *ngIf="username?.errors?.['minlength']">Username phải nhiều hơn 5 ký tự</div>
+          <div *ngIf="username?.errors?.['maxlength']">Username phải nhỏ hơn 20 ký tự</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" formControlName="password"
+              placeholder="Enter password"/>
+
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+          <div *ngIf="password?.errors?.['required']">Password không được để trống</div>
+          <div *ngIf="password?.errors?.['minlength']">Password phải nhiều hơn 6 ký tự</div>
+          <div *ngIf="password?.errors?.['maxlength']">Password phải nhỏ hơn 16 ký tự</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-signin" (click)="onSubmit()" [disabled]="registerForm.invalid">Create Account</button>
+    </form>
+    <div>
+      <p>-Or continue with-</p>
+    </div>
+    <div class="option-login">
+      <div>
+        <img src="/assets/google.png" alt="" />
+      </div>
+      <div>
+        <img src="/assets/facebook.png" alt="" />
+      </div>
+    </div>
+    <div class="signup">
+      <p>I Already Have an Account? <a href="/login">Login</a></p>
+    </div>
+  </div>
+</div>
+

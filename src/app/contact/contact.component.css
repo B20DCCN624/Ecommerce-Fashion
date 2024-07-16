@@ -1,0 +1,109 @@
+
+.container-title {
+  width: 100%;
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.container-title img {
+  width: 100%;
+  height: auto;
+}
+
+.container-title h2 {
+  position: absolute;
+  left: 80px;
+  bottom: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.container-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.content-form {
+  width: 55%;
+}
+
+.content-form h3 {
+ color: #3A3939;
+ font-size: 20px;
+ font-weight: bold;
+}
+
+.content-form p {
+  margin-bottom: 30px;
+}
+
+.ms-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.content-name, .content-email, .content-message {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #555555;
+  margin-bottom: 5px;
+}
+
+.input-name, .input-email {
+  outline: none;
+  border: 1px solid #DDDD;
+  border-radius: 4px;
+  padding: 2px 10px;
+  margin-bottom: 15px;
+}
+
+.input-message {
+  outline: none;
+  border: 1px solid #DDDD;
+  border-radius: 4px;
+  padding: 20px 10px;
+}
+
+.content-information {
+  width: 25%;
+}
+
+.information {
+  margin-bottom: 24px;
+}
+
+.information h4 {
+  font-weight: bold;
+  font-size: 16px;
+  color: #1D1D1D;
+}
+
+.information p {
+  color: #555555;
+  margin-bottom: 0;
+}
+
+.btn-send {
+  background-color: #024E82;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 30px 0 0 80px;
+  transition: transform 0.2s ease;
+}
+
+.btn-send:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}

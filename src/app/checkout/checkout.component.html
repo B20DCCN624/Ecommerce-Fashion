@@ -1,0 +1,65 @@
+<div class="checkout-container">
+  <nz-breadcrumb class="nz-breadcrumb">
+    <nz-breadcrumb-item [routerLink]="['/home']">HOME</nz-breadcrumb-item>
+    <nz-breadcrumb-item>CHECKOUT</nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <h2>Billing details</h2>
+  <form>
+    <div class="form-group">
+      <label for="fullName">Full Name*</label>
+      <input type="text" id="fullName" required />
+    </div>
+    <div class="form-group">
+      <label for="streetAddress">Street address*</label>
+      <input type="text" id="streetAddress" placeholder="House number and street name" required/>
+    </div>
+    <div class="form-group">
+      <label for="city">Town / City*</label>
+      <input type="text" id="city" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone*</label>
+      <input type="tel" id="phone" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email address*</label>
+      <input type="email" id="email" required />
+    </div>
+  </form>
+
+  <h2>Your order</h2>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allCartItem">
+        <td>{{ item.name }}</td>
+        <td>${{ item.price }}.00</td>
+      </tr>
+      <tr>
+        <td>Subtotal</td>
+        <td>${{ total }}.00</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="total">${{ total }}.00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="payment-note">
+    <p>
+      Cash on delivery. Please contact us if you require assistance or wish to
+      make alternate arrangements.
+    </p>
+  </div>
+
+  <!-- <button type="submit" class="order-button">PLACE ORDER</button> -->
+
+  <button nz-button nzType="primary" (click)="showConfirm()" class="order-button">PLACE ORDER</button>
+</div>

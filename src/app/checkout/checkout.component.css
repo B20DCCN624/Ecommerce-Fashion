@@ -1,0 +1,90 @@
+.checkout-container {
+  width: 92%;
+  margin: 40px auto;
+}
+
+.nz-breadcrumb {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkout-container h2 {
+  font-size: 28px;
+  margin: 30px 0 20px 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #555555;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 50%;
+  border: 1px solid #CCCCCC;
+  padding: 10px;
+  border-radius: 6px;
+  outline: none;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.cart-table tr {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.cart-table tr .total {
+  font-weight: bold;
+  font-size: 16px;
+  color: #F83758;
+}
+
+
+.cart-table th, .cart-table td {
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.cart-table th {
+  background-color: #f6f6f6;
+}
+
+.cart-table td {
+  font-weight: 400;
+}
+
+.payment-note {
+  padding: 10px 0;
+  font-weight: 500;
+  color: #F83758;
+  font-size: 16px;
+}
+
+.order-button {
+  float: right;
+  background-color: #e0722d;
+  color: #FFFFFF;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.order-button:hover {
+  background-color: #d45c1a;
+  transform: scale(1.05);
+}

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Welcome Back!</h2>
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" formControlName="username"
+              placeholder="Username or email"/>
+
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+          <div *ngIf="username?.errors?.['required']">Username không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" formControlName="password"
+              placeholder="Enter password"/>
+
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+          <div *ngIf="password?.errors?.['required']">Password không được để trống</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-signin" (click)="onLogin()" [disabled]="loginForm.invalid">Sign in</button>
+    </form>
+    <div>
+      <p>-Or continue with-</p>
+    </div>
+    <div class="option-login">
+      <div>
+        <img src="/assets/google.png" alt="" />
+      </div>
+      <div>
+        <img src="/assets/facebook.png" alt="" />
+      </div>
+    </div>
+    <div class="signup">
+      <p>Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+  </div>
+</div>

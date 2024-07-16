@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="search-item">
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" name="search" placeholder="Search" [(ngModel)]="productName">
+    </form>
+  </div>
+
+  <div class="container-title">
+    <h3>Discover NEW Arrivals</h3>
+    <p>Recently added shirts!</p>
+  </div>
+  <div class="content-product">
+    <div class="item-content" *ngFor="let item of paginateFashion">
+      <div [routerLink]="['/detail', item._id]">
+        <img src="{{ item.image }}" alt="" />
+        <div class="item-title">{{ item.name }}</div>
+        <div class="item-price">
+          <div class="old-price">${{ item.oldPrice }}.00</div>
+          <div class="new-price">${{ item.newPrice }}.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nz-pagination [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="allFashion.length"
+                (nzPageIndexChange)="onPageChange($event)" class="paginate">
+  </nz-pagination>
+
+  <div class="service">
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+          <div class="delivery">
+            <div class="delivery-icon">
+              <i class="fa-solid fa-truck"></i>
+            </div>
+            <div class="delivery-content">
+              <h4>FREE SHIPPING</h4>
+              <p>Enjoy free shipping on all orders above $100</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+          <div class="support">
+            <div class="support-icon">
+              <i class="fa-solid fa-life-ring"></i>
+            </div>
+            <div class="support-content">
+              <h4>SUPPORT 24/7</h4>
+              <p>Our support team is there to help you for queries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+          <div class="return">
+            <div class="return-icon">
+              <i class="fa-solid fa-rotate-left"></i>
+            </div>
+            <div class="return-content">
+              <h4>30 DAYS RETURN</h4>
+              <p>Simply return it within 30 days for an exchange</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+          <div class="payment">
+            <div class="payment-icon">
+              <i class="fa-solid fa-fingerprint"></i>
+            </div>
+            <div class="payment-content">
+              <h4>100% PAYMENT SECURE</h4>
+              <p>Our payments are secure with 256 bit encryption</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-title-topseller">
+    <h3>Top Sellers</h3>
+    <p>Browser our top-selling product</p>
+  </div>
+
+  <div class="content-topseller">
+    <div class="item-content" *ngFor="let item of allTopSeller">
+      <div [routerLink]="['/detail', item._id]">
+        <img src="{{ item.image }}" alt="" />
+        <div class="item-title">{{ item.name }}</div>
+        <div class="item-price">
+          <div class="old-price">${{ item.oldPrice }}.00</div>
+          <div class="new-price">${{ item.newPrice }}.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

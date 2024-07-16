@@ -1,0 +1,133 @@
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #CCCC;
+}
+
+.container p {
+  max-width: 150px;
+  font-weight: 500;
+  color: #1D1D1D;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 24px;
+}
+
+.container-nav {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.container-nav a {
+  color: #000000;
+  margin-right: 28px;
+  text-transform: uppercase;
+}
+
+.container-nav a:hover {
+  color: #024E82;
+}
+
+.container-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.container-menu i {
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  padding: 0 16px;
+  color: #000000;
+}
+
+.container-menu i:hover {
+  color: #024E82;
+  transform: scale(1.2);
+}
+
+.container-menu ul[nz-menu] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media(max-width: 768px) {
+  .container {
+    display: flex;
+    padding: 16px 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-nav {
+    margin: 16px 0;
+    justify-content:flex-start;
+  }
+
+  .container-menu {
+    justify-content: flex-start;
+
+  }
+}
+
+
+
+.footer {
+  width: 95%;
+  bottom: 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #FBFBFB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid #CCCC;
+}
+
+.footer-content p{
+  color: #1D1D1D;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer-nav {
+  margin-top: 0.5em;
+}
+
+.footer-nav a {
+  color: #1D1D1D;
+  margin: 0 0.5em;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+  color: #024E82;
+}
+
+.footer-payment {
+  display: flex;
+  font-size: 26px;
+}
+
+.footer-payment i {
+  margin-left: 10px;
+}
+
+.content-wrapper {
+  margin-bottom: 50px;
+}
+

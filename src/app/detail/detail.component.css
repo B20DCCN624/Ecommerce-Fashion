@@ -1,0 +1,175 @@
+.container {
+  width: 100%;
+  display: flex;
+  margin: 40px;
+  padding: 20px;
+}
+
+.container-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 400px;
+  background-color: #f5f5f5;
+  overflow: hidden; /* Ẩn phần hình ảnh vượt quá container */
+  border-radius: 10px;
+}
+
+.container-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.nz-breadcrumb {
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+
+
+.container-detail {
+  margin-left: 80px;
+}
+
+.container-detail h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.rating {
+  display: flex;
+  font-size: 24px;
+  color: #d3d3d3;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rating span {
+  cursor: pointer;
+  transition: color 0.3s, font-weight 0.3s;
+  color: #d3d3d3;
+  font-weight: normal;
+}
+
+.rating span.filled {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.rating span:hover,
+.rating span:hover ~ span {
+  color: #ffcc00;
+}
+
+/* Hiệu ứng hover từ trái qua phải */
+.rating span:hover ~ span {
+  color: #d3d3d3 !important;
+}
+
+
+.rating-star {
+  color: red;
+  margin-left: 10px;
+  font-size: 16px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.price {
+  font-size: 20px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #818181;
+  margin-right: 10px;
+}
+
+.new-price {
+  color: #024E82;
+}
+
+.description {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-size: 16px;
+  color: #333;
+  width: 80%;
+}
+
+.description p {
+  margin: 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+  max-width: 600;
+}
+
+#size {
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+#size option {
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+}
+
+#size option:hover {
+  background-color: #f9f9f9;
+}
+
+.btn-add {
+  color: #FFFFFF;
+  background-color: #024E82;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.btn-add:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.category {
+  margin-top: 20px;
+  color: #1D1D1D;
+  font-weight: 500;
+  display: flex;
+  font-size: 15px;
+}
+
+.category p {
+  color: #555555;
+  margin-left: 5px;
+}
+
+.content {
+  margin-left: 40px;
+}
+
+.content p {
+  padding: 20px 40px;
+}
+.code-box-demo {
+  overflow-x: auto;
+}
+
+.code-box-demo .ant-segmented {
+  margin-bottom: 10px;
+}
+
+
+
+
