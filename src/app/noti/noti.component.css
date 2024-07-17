@@ -1,0 +1,13 @@
+.not-logged-in-message {
+  text-align: center;
+  margin: 100px 50px;
+}
+
+.not-logged-in-message h3 {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.not-logged-in-message p {
+  font-size: 16px;
+}

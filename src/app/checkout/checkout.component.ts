@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FashionService } from '../fashion.service';
@@ -9,11 +9,7 @@ import { CartItem } from '../cart';
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [
-    NzBreadCrumbModule,
-    CommonModule,
-    RouterLink
-  ],
+  imports: [NzBreadCrumbModule, CommonModule, RouterLink],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
   providers: [NzModalService],
@@ -26,7 +22,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private fashionService: FashionService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private router: Router
   ) {}
 
   showConfirm() {
@@ -42,13 +39,18 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fashionService.getAllCart().subscribe((data) => {
-      this.allCartItem = data;
-      this.totalPrice();
-    });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.fashionService.getAllCart().subscribe((data) => {
+        this.allCartItem = data;
+        this.totalPrice();
+      });
+    } else {
+      this.router.navigate(['/noti']);
+    }
   }
 
   totalPrice() {
-    this.total = this.allCartItem.reduce((acc, item) => acc + (Number(item.price) * Number(item.quantity)), 0);
+    this.total = this.allCartItem.reduce((acc, item) => acc + Number(item.price) * Number(item.quantity),0);
   }
 }

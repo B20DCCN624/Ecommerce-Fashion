@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FashionService } from '../fashion.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Fashion } from '../fashion';
 import { CommonModule } from '@angular/common';
@@ -11,13 +11,14 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
   providers: [FashionService]
 })
-export class CreateComponent {
+export class CreateComponent implements  OnInit{
 
   constructor(
     private fashionService: FashionService,
@@ -57,10 +58,17 @@ export class CreateComponent {
     category: '',
   }
 
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if(!token) {
+      this.router.navigate(['/noti'])
+    }
+  }
+
   onSubmit() {
     this.fashionService.createFashion(this.formData).subscribe( data => {
       console.log(data);
-      this.router.navigate(['']);
-    })
+      this.router.navigate(['/home']);
+    });
   }
 }

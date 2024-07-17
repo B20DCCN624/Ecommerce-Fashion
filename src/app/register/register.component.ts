@@ -26,16 +26,18 @@ export class RegisterComponent {
 
   registerForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(16)])
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]),
+    role: new FormControl('', [Validators.required])
   })
 
   //getter
   get username() { return this.registerForm.get('username'); }
   get password() { return this.registerForm.get('password'); }
+  get role() { return this.registerForm.get('role'); }
 
   onSubmit() {
-    const {username, password} = this.registerForm.value;
-    this.fashionService.register(username, password).subscribe( data => {
+    const {username, password, role} = this.registerForm.value;
+    this.fashionService.register(username, password, role).subscribe( data => {
       this.message.success('Tạo tài khoản thành công');
       this.router.navigate(['/login']);
     })

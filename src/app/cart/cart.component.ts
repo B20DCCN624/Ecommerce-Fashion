@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FashionService } from '../fashion.service';
 import { CartItem } from '../cart';
 import { CommonModule } from '@angular/common';
@@ -22,13 +22,22 @@ export class CartComponent implements OnInit {
   allCartItem: CartItem [] = [];
   total: number = 0;
 
-  constructor(private fashionService: FashionService) {};
+  constructor(
+    private fashionService: FashionService,
+    private router: Router
+  ) {};
 
   ngOnInit(): void {
-    this.fashionService.getAllCart().subscribe( data => {
-      this.allCartItem = data;
-      this.totalPrice();
-    })
+    const token = localStorage.getItem('token');
+    if(token) {
+      this.fashionService.getAllCart().subscribe( data => {
+        this.allCartItem = data;
+        this.totalPrice();
+      })
+    } else {
+      this.router.navigate(['/noti']);
+    }
+
   }
 
   totalPrice() {

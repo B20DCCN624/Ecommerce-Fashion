@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Fashion } from '../fashion';
 import { FashionService } from '../fashion.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     ReactiveFormsModule,
     CommonModule,
     NzGridModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NgxPaginationModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -25,33 +27,27 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 export class HomeComponent implements OnInit{
   allFashion: Fashion [] = [];
   allTopSeller: Fashion [] = [];
-  paginateFashion: Fashion [] = [];
-  pageSize = 8;
-  pageIndex = 1;
+  p: number = 1;
   productName: string = '';
 
-  constructor(private fashionService: FashionService) {}
+  constructor(
+    private fashionService: FashionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if(token) {
       this.fashionService.getAllFashion().subscribe( data => {
         this.allFashion = data;
-        this.loadPage(this.pageIndex);
       })
 
       this.fashionService.getTopSeller().subscribe( data => {
         this.allTopSeller = data;
       })
-  }
-  //Phan trang
-  loadPage(page: number) {
-    const startIndex = (page-1) * this.pageSize;
-    const endIndex = page * this.pageSize;
-    this.paginateFashion = this.allFashion.slice(startIndex, endIndex);
-  }
-
-  onPageChange(page : number) {
-    this.pageIndex = page;
-    this.loadPage(page);
+    } else {
+      this.router.navigate(['/noti']);
+    }
   }
 
   //Search by name
@@ -62,7 +58,7 @@ export class HomeComponent implements OnInit{
   }
   private searchProduct(name : string) {
     this.fashionService.searchByName(name).subscribe(data => {
-      this.paginateFashion = data;
+      this.allFashion = data;
       console.log(data);
     })
   }

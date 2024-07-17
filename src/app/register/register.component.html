@@ -25,6 +25,15 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" formControlName="role" placeholder="Enter role"/>
+
+        <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" class="error-message">
+          <div *ngIf="role?.errors?.['required']">Role không được để trống</div>
+        </div>
+      </div>
+
       <button type="submit" class="btn-signin" (click)="onSubmit()" [disabled]="registerForm.invalid">Create Account</button>
     </form>
     <div>

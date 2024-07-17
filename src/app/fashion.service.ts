@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Fashion } from './fashion';
 import { CartItem } from './cart';
@@ -11,9 +11,20 @@ import { Observable } from 'rxjs';
 export class FashionService {
 
   constructor(private httpClient:HttpClient) { }
+
+  private getAuthHeaders() {
+    const token = localStorage.getItem('token');
+    return {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      }),
+      withCredentials: true
+    };
+  }
+
   //Fashion
   getAllFashion() {
-    return this.httpClient.get<Fashion[]>('http://localhost:3000/');
+    return this.httpClient.get<Fashion[]>('http://localhost:3000/home', this.getAuthHeaders());
   }
 
   detailFashion(id: string) {
@@ -21,11 +32,11 @@ export class FashionService {
   }
 
   createFashion(data : Fashion) {
-    return this.httpClient.post<Fashion>('http://localhost:3000/add', data);
+    return this.httpClient.post<Fashion>('http://localhost:3000/add', data, this.getAuthHeaders());
   }
 
   getTopSeller() {
-    return this.httpClient.get<Fashion[]>('http://localhost:3000/top-seller');
+    return this.httpClient.get<Fashion[]>('http://localhost:3000/top-seller', this.getAuthHeaders());
   }
 
   searchByName(name : string) {
@@ -47,10 +58,10 @@ export class FashionService {
 
   //Login
   login(username: string, password: string): Observable<Account> {
-    return this.httpClient.post<Account>('http://localhost:3000/login', {username, password});
+    return this.httpClient.post<Account>('http://localhost:3000/login', { username, password }, this.getAuthHeaders());
   }
 
-  register(username: string, password: string) {
-    return this.httpClient.post<Account>('http://localhost:3000/register', {username, password});
+  register(username: string, password: string, role: string) {
+    return this.httpClient.post<Account>('http://localhost:3000/register', {username, password, role  });
   }
 }

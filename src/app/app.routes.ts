@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { NotiComponent } from './noti/noti.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,4 +21,5 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
+  {path: 'noti', component: NotiComponent},
 ];

@@ -39,7 +39,9 @@ export class LoginComponent {
   onLogin() {
     const { username, password } = this.loginForm.value;
     this.fashionService.login(username, password).subscribe(
-      data => {
+      (data : any) => {
+        localStorage.setItem('token', data.token);
+        // console.log("token",data.token);
         this.message.success('Đăng nhập thành công');
         this.router.navigate(['/home']);
       },

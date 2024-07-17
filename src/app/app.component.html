@@ -1,4 +1,4 @@
-<div class="container" *ngIf="router.url !== '/login' && router.url !== '/register'">
+<div class="container" *ngIf="router.url !== '/login' && router.url !== '/register' && router.url !== '/noti'">
   <div>
     <a href="/home"><p>North Start</p></a>
   </div>
@@ -19,7 +19,7 @@
           <li nz-menu-item>Trợ giúp</li>
           <li nz-menu-divider></li>
           <li nz-menu-item>
-            <a href="/">Log out</a>
+            <a href="/">Đăng xuất</a>
           </li>
         </ul>
       </nz-dropdown-menu>
@@ -46,7 +46,7 @@
   <router-outlet></router-outlet>
 </div>
 
-<footer class="footer" *ngIf="router.url !== '/login' && router.url !== '/register'">
+<footer class="footer" *ngIf="router.url !== '/login' && router.url !== '/register' && router.url !== '/noti' ">
   <div class="footer-content">
     <p>&copy; 2024 North Start. All rights reserved.</p>
     <div class="footer-nav">
