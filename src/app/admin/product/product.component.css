@@ -1,0 +1,55 @@
+.container {
+  padding: 20px;
+}
+
+.table {
+  width: 96%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #DDDDDD;
+}
+
+.table th {
+  background-color: #f4f4f4;
+}
+
+.item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  padding: 6px 12px;
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+}
+
+.btn-info {
+  background-color: #b9b8b8;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

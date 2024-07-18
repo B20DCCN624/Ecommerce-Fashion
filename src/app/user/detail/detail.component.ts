@@ -4,9 +4,9 @@ import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { addDays, formatDistance } from 'date-fns';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { FashionService } from '../fashion.service';
-import { Fashion } from '../fashion';
-import { CartItem } from '../cart';
+import { FashionService } from '../../fashion.service';
+import { Fashion } from '../../fashion';
+import { CartItem } from '../../cart';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -64,7 +64,7 @@ export class DetailComponent implements OnInit{
   formData!: Fashion | undefined;
 
   constructor(
-    private fashisonService: FashionService,
+    private fashionService: FashionService,
     private route: ActivatedRoute,
     private router: Router
   ) {};
@@ -77,7 +77,7 @@ export class DetailComponent implements OnInit{
   }
 
   getById(id: string) {
-    this.fashisonService.detailFashion(id).subscribe( data => {
+    this.fashionService.detailFashion(id).subscribe( data => {
       this.formData = data;
       // console.log("This is data", this.formData);
     })
@@ -94,7 +94,7 @@ export class DetailComponent implements OnInit{
         quantity: 1,
         total: Number(this.formData.newPrice) * 1,
       };
-      this.fashisonService.addToCart(cartItem).subscribe( data => {
+      this.fashionService.addToCart(cartItem).subscribe( data => {
         console.log(data);
         this.router.navigate(['/cart']);
       })

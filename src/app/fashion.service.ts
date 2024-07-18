@@ -1,25 +1,36 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Fashion } from './fashion';
 import { CartItem } from './cart';
 import { Account } from './account';
 import { Observable } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FashionService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(
+    private httpClient:HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   private getAuthHeaders() {
-    const token = localStorage.getItem('token');
-    return {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      }),
-      withCredentials: true
-    };
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      return {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+        }),
+        withCredentials: true
+      };
+    } else {
+      return {
+        headers: new HttpHeaders(),
+        withCredentials: true
+      };
+    }
   }
 
   //Fashion
@@ -28,11 +39,7 @@ export class FashionService {
   }
 
   detailFashion(id: string) {
-    return this.httpClient.get<Fashion>(`http://localhost:3000/${id}`);
-  }
-
-  createFashion(data : Fashion) {
-    return this.httpClient.post<Fashion>('http://localhost:3000/add', data, this.getAuthHeaders());
+    return this.httpClient.get<Fashion>(`http://localhost:3000/detail/${id}`);
   }
 
   getTopSeller() {
@@ -43,13 +50,30 @@ export class FashionService {
     return this.httpClient.get<Fashion[]>(`http://localhost:3000/searchByName?name=${name}`);
   }
 
+  //Admin
+  createFashion(data : Fashion) {
+    return this.httpClient.post<Fashion>('http://localhost:3000/add', data, this.getAuthHeaders());
+  }
+
+  deleteFashion(id: String) {
+    return this.httpClient.delete<Fashion>(`http://localhost:3000/delete/${id}`);
+  }
+
+  updateFashion(data : Fashion) {
+    return this.httpClient.put<Fashion>(`http://localhost:3000/update/${data._id}`, data);
+  }
+
+  editFashion(id: String) {
+    return this.httpClient.get<Fashion>(`http://localhost:3000/edit/${id}`);
+  }
+
   //Cart
   addToCart(data: CartItem) {
     return this.httpClient.post<Fashion>('http://localhost:3000/addtocart', data);
   }
 
   getAllCart() {
-    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllCart');
+    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllCart', this.getAuthHeaders());
   }
 
   deleteItem(id: string) {

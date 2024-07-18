@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { Router, RouterLink } from '@angular/router';
-import { FashionService } from '../fashion.service';
-import { CartItem } from '../cart';
-import { CommonModule } from '@angular/common';
+import { FashionService } from '../../fashion.service';
+import { CartItem } from '../../cart';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -24,18 +24,21 @@ export class CartComponent implements OnInit {
 
   constructor(
     private fashionService: FashionService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {};
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if(token) {
-      this.fashionService.getAllCart().subscribe( data => {
-        this.allCartItem = data;
-        this.totalPrice();
-      })
-    } else {
-      this.router.navigate(['/noti']);
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      if(token) {
+        this.fashionService.getAllCart().subscribe( data => {
+          this.allCartItem = data;
+          this.totalPrice();
+        })
+      } else {
+        this.router.navigate(['/noti']);
+      }
     }
 
   }

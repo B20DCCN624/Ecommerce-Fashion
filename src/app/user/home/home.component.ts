@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Fashion } from '../fashion';
-import { FashionService } from '../fashion.service';
+import { Fashion } from '../../fashion';
+import { FashionService } from '../../fashion.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -32,21 +32,24 @@ export class HomeComponent implements OnInit{
 
   constructor(
     private fashionService: FashionService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if(token) {
-      this.fashionService.getAllFashion().subscribe( data => {
-        this.allFashion = data;
-      })
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      if(token) {
+        this.fashionService.getAllFashion().subscribe( data => {
+          this.allFashion = data;
+        })
 
-      this.fashionService.getTopSeller().subscribe( data => {
-        this.allTopSeller = data;
-      })
-    } else {
-      this.router.navigate(['/noti']);
+        this.fashionService.getTopSeller().subscribe( data => {
+          this.allTopSeller = data;
+        })
+      } else {
+        this.router.navigate(['/noti']);
+      }
     }
   }
 

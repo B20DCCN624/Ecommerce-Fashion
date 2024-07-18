@@ -1,28 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { FashionService } from '../fashion.service';
-import { Router, RouterLink } from '@angular/router';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Fashion } from '../fashion';
 import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FashionService } from '../../fashion.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Fashion } from '../../fashion';
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-edit',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterLink
+    ReactiveFormsModule
   ],
-  templateUrl: './create.component.html',
-  styleUrl: './create.component.css',
-  providers: [FashionService]
+  templateUrl: './edit.component.html',
+  styleUrl: './edit.component.css'
 })
-export class CreateComponent implements  OnInit{
-
+export class EditComponent {
   constructor(
     private fashionService: FashionService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   productForm: FormGroup = new FormGroup({
@@ -59,16 +58,22 @@ export class CreateComponent implements  OnInit{
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if(!token) {
-      this.router.navigate(['/noti'])
-    }
+    this.route.paramMap.subscribe(param => {
+      let id = String(param.get('id'));
+      this.getById(id);
+    })
+  }
+
+  getById(id: String) {
+    this.fashionService.editFashion(id).subscribe( data => {
+      this.formData = data;
+      // console.log("This is data", this.formData);
+    })
   }
 
   onSubmit() {
-    this.fashionService.createFashion(this.formData).subscribe( data => {
-      console.log(data);
-      this.router.navigate(['/home']);
-    });
+    this.fashionService.updateFashion(this.formData).subscribe( data => {
+      this.router.navigate(['/admin']);
+    })
   }
 }

@@ -1,0 +1,17 @@
+<div class="card-container">
+  <nz-tabset nzType="card" [nzTabPosition]="'left'" (nzSelectedIndexChange)="onTabChange($event)">
+    <nz-tab nzTitle="All product">
+      <ng-container *ngIf="selectedTab === 0">
+        <app-product></app-product>
+      </ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="Dashboard">
+      <ng-container *ngIf="selectedTab === 1">
+        <app-product></app-product>
+      </ng-container>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+
+

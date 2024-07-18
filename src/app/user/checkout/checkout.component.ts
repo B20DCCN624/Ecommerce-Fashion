@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { FashionService } from '../fashion.service';
-import { CartItem } from '../cart';
+import { FashionService } from '../../fashion.service';
+import { CartItem } from '../../cart';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +23,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private fashionService: FashionService,
     private modal: NzModalService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   showConfirm() {
@@ -39,14 +40,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.fashionService.getAllCart().subscribe((data) => {
-        this.allCartItem = data;
-        this.totalPrice();
-      });
-    } else {
-      this.router.navigate(['/noti']);
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.fashionService.getAllCart().subscribe((data) => {
+          this.allCartItem = data;
+          this.totalPrice();
+        });
+      } else {
+        this.router.navigate(['/noti']);
+      }
     }
   }
 

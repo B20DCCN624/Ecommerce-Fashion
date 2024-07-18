@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FashionService } from '../fashion.service';
+import { FashionService } from '../../fashion.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';

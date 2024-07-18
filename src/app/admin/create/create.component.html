@@ -1,3 +1,4 @@
+<h2>Thêm sản phẩm</h2>
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>
@@ -71,5 +72,5 @@
     </div>
   </div>
 
-  <button type="submit" class="btn-submit" [disabled]="productForm.invalid">Submit</button>
+  <button type="submit" class="btn-submit" [disabled]="productForm.invalid">Thêm</button>
 </form>
