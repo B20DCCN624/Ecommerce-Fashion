@@ -73,7 +73,8 @@ export class EditComponent {
 
   onSubmit() {
     this.fashionService.updateFashion(this.formData).subscribe( data => {
+      console.log(data);
       this.router.navigate(['/admin']);
-    })
+    });
   }
 }

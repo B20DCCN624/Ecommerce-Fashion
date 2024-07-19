@@ -5,13 +5,24 @@
         <app-product></app-product>
       </ng-container>
     </nz-tab>
-    <nz-tab nzTitle="Dashboard">
+    <nz-tab nzTitle="All product">
       <ng-container *ngIf="selectedTab === 1">
         <app-product></app-product>
       </ng-container>
     </nz-tab>
+    <nz-tab nzTitle="Order">
+      <ng-container *ngIf="selectedTab === 2">
+        <app-order></app-order>
+      </ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="Dashboard">
+      <ng-container *ngIf="selectedTab === 3">
+        <app-dashboard></app-dashboard>
+      </ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="LogOut">
+    </nz-tab>
   </nz-tabset>
 </div>
-
 
 

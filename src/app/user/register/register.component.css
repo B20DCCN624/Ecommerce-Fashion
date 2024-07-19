@@ -39,6 +39,13 @@
   outline: none;
 }
 
+.select-role {
+  border: 1px solid #DDDDDD;
+  padding: 6px 20px;
+  border-radius: 8px;
+  outline: none;
+}
+
 .btn-signin {
   width: 100%;
   border: 1px solid #CCCCCC;

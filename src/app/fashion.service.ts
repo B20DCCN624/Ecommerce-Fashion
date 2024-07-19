@@ -5,6 +5,7 @@ import { CartItem } from './cart';
 import { Account } from './account';
 import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { Order } from './order';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,11 @@ export class FashionService {
 
   searchByName(name : string) {
     return this.httpClient.get<Fashion[]>(`http://localhost:3000/searchByName?name=${name}`);
+  }
+
+  //Order
+  addOrder(data : Order) {
+    return this.httpClient.post<Order>('http://localhost:3000/order', data);
   }
 
   //Admin

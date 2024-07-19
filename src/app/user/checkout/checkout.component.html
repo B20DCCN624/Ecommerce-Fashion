@@ -5,26 +5,26 @@
   </nz-breadcrumb>
 
   <h2>Billing details</h2>
-  <form>
+  <form [formGroup]="orderForm">
     <div class="form-group">
       <label for="fullName">Full Name*</label>
-      <input type="text" id="fullName" required />
+      <input type="text" id="fullName" [(ngModel)]="formData.fullname" formControlName="fullname" />
     </div>
     <div class="form-group">
       <label for="streetAddress">Street address*</label>
-      <input type="text" id="streetAddress" placeholder="House number and street name" required/>
+      <input type="text" id="streetAddress" [(ngModel)]="formData.address" placeholder="House number and street name" formControlName="address"/>
     </div>
     <div class="form-group">
       <label for="city">Town / City*</label>
-      <input type="text" id="city" required />
+      <input type="text" id="city" [(ngModel)]="formData.city" formControlName="city" />
     </div>
     <div class="form-group">
       <label for="phone">Phone*</label>
-      <input type="tel" id="phone" required />
+      <input type="tel" id="phone" [(ngModel)]="formData.phone" formControlName="phone" />
     </div>
     <div class="form-group">
       <label for="email">Email address*</label>
-      <input type="email" id="email" required />
+      <input type="email" id="email" [(ngModel)]="formData.email" formControlName="email" />
     </div>
   </form>
 
@@ -58,8 +58,6 @@
       make alternate arrangements.
     </p>
   </div>
-
-  <!-- <button type="submit" class="order-button">PLACE ORDER</button> -->
 
   <button nz-button nzType="primary" (click)="showConfirm()" class="order-button">PLACE ORDER</button>
 </div>

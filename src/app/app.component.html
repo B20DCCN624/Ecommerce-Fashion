@@ -1,6 +1,6 @@
 <div class="container" *ngIf="router.url !== '/login' && router.url !== '/register'
                         && router.url !== '/admin' && router.url !== '/noti'
-                        && router.url !== '/create'">
+                        && router.url !== '/create' && router.url !== '/edit/:id'">
   <div>
     <a href="/home"><p>North Start</p></a>
   </div>
@@ -50,7 +50,7 @@
 
 <footer class="footer" *ngIf="router.url !== '/login' && router.url !== '/register'
                       && router.url !== '/admin' && router.url !== '/noti'
-                      && router.url !== '/create' ">
+                      && router.url !== '/create' && router.url !== '/edit/:id' ">
   <div class="footer-content">
     <p>&copy; 2024 North Start. All rights reserved.</p>
     <div class="footer-nav">

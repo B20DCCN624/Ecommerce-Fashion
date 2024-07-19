@@ -6,6 +6,6 @@ export interface Fashion {
   newPrice: Number,
   description: String,
   image: String,
-  quantity: Number,
-  category: String,
+  quantity: number,
+  category: string,
 }

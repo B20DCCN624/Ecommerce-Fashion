@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FashionService } from '../../fashion.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ import { error } from 'console';
   styleUrl: './login.component.css',
   providers: [FashionService]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   constructor(
     private fashionService: FashionService,
@@ -36,6 +36,12 @@ export class LoginComponent {
   // getter
   get username() { return this.loginForm.get('username'); }
   get password() { return this.loginForm.get('password'); }
+
+  ngOnInit(): void {
+    if(isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token');
+    }
+  }
 
   onLogin() {
     const { username, password } = this.loginForm.value;
