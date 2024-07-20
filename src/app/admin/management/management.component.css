@@ -1,0 +1,43 @@
+.container {
+  padding: 20px;
+}
+
+.management-table {
+  width: 96%;
+  margin: 0 auto;
+}
+
+.management-table th, .management-table td{
+  border: 1px solid #DDDDDD;
+  text-align: center;
+  padding: 10px;
+}
+
+.management-table th {
+  background-color: #f4f4f4;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-edit {
+  background-color: #2f36f7;
+  border: none;
+  outline: none;
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.btn-delete {
+  background-color: #f02626;
+  border: none;
+  outline: none;
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 16px;
+}

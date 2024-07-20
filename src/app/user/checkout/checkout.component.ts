@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
     this.fashionService.addOrder(this.formData).subscribe( data => {
       // console.log(data);
       this.orderForm.reset();
+      this.clearData();
     })
 
     this.confirmModal = this.modal.confirm({
@@ -69,6 +70,12 @@ export class CheckoutComponent implements OnInit {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
         }).catch(() => console.log('Oops errors!')),
     });
+  }
+
+  clearData() {
+    this.fashionService.clearData().subscribe(data => {
+      this.total = 0;
+    })
   }
 
   ngOnInit(): void {

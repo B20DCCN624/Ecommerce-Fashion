@@ -56,6 +56,10 @@ export class FashionService {
     return this.httpClient.post<Order>('http://localhost:3000/order', data);
   }
 
+  gtAllOrder() {
+    return this.httpClient.get<Order[]>('http://localhost:3000/getAllOrder');
+  }
+
   //Admin
   createFashion(data : Fashion) {
     return this.httpClient.post<Fashion>('http://localhost:3000/add', data, this.getAuthHeaders());
@@ -86,6 +90,10 @@ export class FashionService {
     return this.httpClient.delete<CartItem>(`http://localhost:3000/deleteItem/${id}`);
   }
 
+  clearData() {
+    return this.httpClient.delete<CartItem>('http://localhost:3000/clearCart');
+  }
+
   //Login
   login(username: string, password: string): Observable<Account> {
     return this.httpClient.post<Account>('http://localhost:3000/login', { username, password }, this.getAuthHeaders());
@@ -93,5 +101,9 @@ export class FashionService {
 
   register(username: string, password: string, role: string) {
     return this.httpClient.post<Account>('http://localhost:3000/register', {username, password, role  });
+  }
+
+  getAllAccount() {
+    return this.httpClient.get<Account[]>('http://localhost:3000/getAllAccount');
   }
 }

@@ -15,8 +15,13 @@
         <app-order></app-order>
       </ng-container>
     </nz-tab>
-    <nz-tab nzTitle="Dashboard">
+    <nz-tab nzTitle="Management">
       <ng-container *ngIf="selectedTab === 3">
+        <app-management></app-management>
+      </ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="Dashboard">
+      <ng-container *ngIf="selectedTab === 4">
         <app-dashboard></app-dashboard>
       </ng-container>
     </nz-tab>

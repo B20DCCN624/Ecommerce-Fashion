@@ -1,1 +1,31 @@
-<p>order works!</p>
+<div class="container">
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Total price</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allOrder, let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ item.fullname }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.email }}</td>
+        <td class="total-price">${{ item.total }}</td>
+        <td>
+          <select name="order" id="order" class="select-order">
+            <option value="pending" selected>Pending</option>
+            <option value="approved">Approved</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgxApexchartsModule } from 'ngx-apexcharts';
+import { ApexDataLabels, ApexStroke, NgxApexchartsModule } from 'ngx-apexcharts';
 
 import {
   ChartComponent,

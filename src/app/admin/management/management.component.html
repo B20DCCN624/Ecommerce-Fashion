@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="management-table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allAccount, let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.password }}</td>
+        <td>{{ item.role }}</td>
+        <td class="btn">
+          <button type="button">Add</button>
+          <button type="button" class="btn-edit">Edit</button>
+          <button type="button" class="btn-delete" (click)="onDelete()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

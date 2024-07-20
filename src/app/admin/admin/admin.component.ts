@@ -10,6 +10,7 @@ import { ProductComponent } from "../product/product.component";
 import { filter } from 'rxjs';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { OrderComponent } from "../order/order.component";
+import { ManagementComponent } from '../management/management.component';
 
 @Component({
   selector: 'app-admin',
@@ -24,7 +25,8 @@ import { OrderComponent } from "../order/order.component";
     HomeComponent,
     ProductComponent,
     DashboardComponent,
-    OrderComponent
+    OrderComponent,
+    ManagementComponent
 ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -39,7 +41,7 @@ export class AdminComponent implements OnInit{
 
   onTabChange(index: number): void {
     this.selectedTab = index;
-    if(index === 4) {
+    if(index === 5) {
       this.logOut();
     }
   }
