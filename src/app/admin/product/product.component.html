@@ -1,4 +1,8 @@
 <div class="container">
+
+  <div class="btn-add">
+    <a href=""  [routerLink]="['/create']">Add product</a>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -19,12 +23,20 @@
         <td>{{ item.category }}</td>
         <td>
           <div class="btn-group">
-            <a href="" class="btn btn-info" [routerLink]="['/create']">Add</a>
+            <!-- <a href="" class="btn btn-info" [routerLink]="['/create']">Add</a> -->
             <a href="" class="btn btn-primary" [routerLink]="['/edit',item._id]">Edit</a>
-            <button type="button" class="btn btn-danger" (click)="deleteItem(item._id)">Delete</button>
+            <button nz-button nzType="primary" (click)="showConfirm(item)" class="btn btn-danger">Delete</button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #modalContent let-modal>
+  <div style="margin-top: 20px;" class="deleteItem">
+    <input nz-input placeholder="Enter name fashion" [(ngModel)]="confirmName" (ngModelChange)="validateName()" />
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  </div>
+</ng-template>
+

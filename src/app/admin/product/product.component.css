@@ -1,10 +1,11 @@
 .container {
   padding: 20px;
+  width: 96%;
+  margin: 0 auto;
 }
 
 .table {
-  width: 96%;
-  margin: 0 auto;
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -37,9 +38,19 @@
   outline: none;
   border: none;
 }
-
-.btn-info {
-  background-color: #abadaf;
+.btn-add {
+  margin-bottom: 20px;
+}
+.btn-add a{
+  background-color: #f40963;
+  padding: 6px 20px;
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .btn-primary {
@@ -47,9 +58,21 @@
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: #f71b31;
 }
 
 .btn:hover {
   opacity: 0.8;
+}
+
+.deleteItem input {
+  outline: none;
+  padding: 4px 20px;
+  border-radius: 10px;
+  border: 1px solid #DDDD;
+  width: 280px;
+}
+
+.text-danger {
+  color: #dc3545;
 }
