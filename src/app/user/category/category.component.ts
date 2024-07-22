@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { Fashion } from '../../fashion';
 import { FashionService } from '../../fashion.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -21,18 +21,27 @@ export class CategoryComponent implements OnInit{
   categories: string[] = []
 
   constructor(
-    private fashionService: FashionService
+    private fashionService: FashionService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
-      this.fashionService.getAllFashion().subscribe( data => {
-        this.allFashion = data;
-        data.forEach((item: Fashion) => {
-          if(!this.categories.includes(item.category)) {
-            this.categories.push(item.category);
-          }
-        })
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      if(token) {
+        this.fashionService.getAllFashion().subscribe( data => {
+          this.allFashion = data;
+          data.forEach((item: Fashion) => {
+            if(!this.categories.includes(item.category)) {
+              this.categories.push(item.category);
+            }
+          })
+        });
+      } else {
+        this.router.navigate(['/about'])
+      }
+    }
   }
 
   getProductByCategory(category: string) {

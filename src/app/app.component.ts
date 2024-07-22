@@ -1,12 +1,13 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { FashionService } from './fashion.service';
 import { Account } from './account';
 import { Fashion } from './fashion';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
   constructor(
     public router: Router,
     private fashionService: FashionService,
+    private cd: ChangeDetectorRef,
     //Local storage
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
@@ -39,21 +41,33 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('token');
     this.username = ''
     this.isLoggedIn = false
+    this.cd.detectChanges()
   }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('token');
-      if (token) {
-        this.fashionService.getCurrentAccount().subscribe(data => {
-          if (data) {
-            this.isLoggedIn = true;
-            this.username = data.username;
-          } else {
-            this.isLoggedIn = false;
-          }
-        });
-      }
+      this.checkLoginStatus();
+
+      this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+      ).subscribe(() => {
+        this.checkLoginStatus();
+      });
+    }
+  }
+
+  private checkLoginStatus(): void {
+    const token = localStorage.getItem('token');
+    if(token) {
+      this.fashionService.getCurrentAccount().subscribe( data => {
+        if(data) {
+          this.isLoggedIn = true;
+          this.username = data.username;
+        } else {
+          this.isLoggedIn = false;
+        }
+        this.cd.detectChanges() // Cập nhật lại giao diện sau khi kiểm tra trạng thái đăng nhập
+      })
     }
   }
 }

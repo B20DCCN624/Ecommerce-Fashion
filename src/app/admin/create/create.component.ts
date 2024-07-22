@@ -63,7 +63,7 @@ export class CreateComponent implements  OnInit{
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (!token) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/about']);
         return;
       }
 

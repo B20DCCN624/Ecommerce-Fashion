@@ -50,19 +50,20 @@ export class AdminComponent implements OnInit{
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if(!token) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/about']);
         return;
       }
 
       const decodedToken: any = decodeJWT(token);
       if(decodedToken.role !== 'admin') {
-        this.router.navigate(['/home']);
+          this.router.navigate(['/home']);
       }
     }
   }
 
   logOut() {
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
+    localStorage.removeItem('token');
   }
 
 }
