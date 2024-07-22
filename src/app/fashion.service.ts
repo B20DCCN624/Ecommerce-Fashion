@@ -106,4 +106,12 @@ export class FashionService {
   getAllAccount() {
     return this.httpClient.get<Account[]>('http://localhost:3000/getAllAccount');
   }
+
+  getCurrentAccount(): Observable<Account> {
+    return this.httpClient.get<Account>('http://localhost:3000/currentAccount', this.getAuthHeaders());
+  }
+
+  deleteAccount(id: string) {
+    return this.httpClient.delete<Account>(`http://localhost:3000/deleteAccount/${id}`);
+  }
 }

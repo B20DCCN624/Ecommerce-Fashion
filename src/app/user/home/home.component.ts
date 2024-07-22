@@ -37,20 +37,28 @@ export class HomeComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('token');
-      if(token) {
-        this.fashionService.getAllFashion().subscribe( data => {
-          this.allFashion = data;
-        })
+    this.fashionService.getAllFashion().subscribe( data => {
+      this.allFashion = data;
+    })
 
-        this.fashionService.getTopSeller().subscribe( data => {
-          this.allTopSeller = data;
-        })
-      } else {
-        this.router.navigate(['/noti']);
-      }
-    }
+    this.fashionService.getTopSeller().subscribe( data => {
+      this.allTopSeller = data;
+    })
+    // if (isPlatformBrowser(this.platformId)) {
+    //   const token = localStorage.getItem('token');
+    //   if(token) {
+    //     this.fashionService.getAllFashion().subscribe( data => {
+    //       this.allFashion = data;
+    //     })
+
+    //     this.fashionService.getTopSeller().subscribe( data => {
+    //       this.allTopSeller = data;
+    //     })
+    //   }
+    //   else {
+    //     this.router.navigate(['/noti']);
+    //   }
+    // }
   }
 
   //Search by name

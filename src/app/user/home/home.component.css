@@ -42,7 +42,7 @@ p {
 
 .content-product {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 40px;
   margin: 20px 40px;
 }
@@ -99,7 +99,7 @@ p {
 
 .content-topseller {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 40px;
   margin: 10px 40px;
 }

@@ -10,7 +10,7 @@
     <p>Recently added shirts!</p>
   </div>
   <div class="content-product">
-    <div class="item-content" *ngFor="let item of allFashion | paginate: {itemsPerPage: 8, currentPage: p}">
+    <div class="item-content" *ngFor="let item of allFashion | paginate: {itemsPerPage: 10, currentPage: p}">
       <div [routerLink]="['/detail', item._id]">
         <img src="{{ item.image }}" alt="" />
         <div class="item-title">{{ item.name }}</div>

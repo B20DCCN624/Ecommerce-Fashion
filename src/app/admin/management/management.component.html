@@ -17,8 +17,8 @@
         <td>{{ item.role }}</td>
         <td class="btn">
           <button type="button" class="btn-edit">Edit</button>
-          <!-- <button nz-button nzType="primary" (click)="showConfirm()">Delete</button> -->
-          <button type="button" class="btn-delete" (click)="onDelete()">Delete</button>
+          <!-- <button nz-button nzType="primary" (click)="showConfirm()" class="btn-delete">Delete</button> -->
+          <button type="button" class="btn-delete" (click)="onDelete(item._id)">Delete</button>
         </td>
       </tr>
     </tbody>

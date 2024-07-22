@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { addDays, formatDistance } from 'date-fns';
@@ -8,7 +8,7 @@ import { FashionService } from '../../fashion.service';
 import { Fashion } from '../../fashion';
 import { CartItem } from '../../cart';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
@@ -49,31 +49,28 @@ export class DetailComponent implements OnInit{
       datetime: formatDistance(new Date(), addDays(new Date(), 2))
     }
   ];
-  // formData: Fashion = {
-  //   _id: '',
-  //   name: '',
-  //   rating: 0,
-  //   oldPrice: 0,
-  //   newPrice: 0,
-  //   description: '',
-  //   image: '',
-  //   quantity: 0,
-  //   category: '',
-  // }
 
   formData!: Fashion | undefined;
 
   constructor(
     private fashionService: FashionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {};
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(param => {
-      let id = String(param.get('id'));
-      this.getById(id);
-    })
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+      if(token) {
+        this.route.paramMap.subscribe(param => {
+          let id = String(param.get('id'));
+          this.getById(id);
+        })
+      } else {
+        this.router.navigate(['/about']);
+      }
+    }
   }
 
   getById(id: string) {

@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit{
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if(!token) {
-        this.router.navigate(['/noti']);
+        this.router.navigate(['/home']);
         return;
       }
 

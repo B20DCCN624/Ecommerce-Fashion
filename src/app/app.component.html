@@ -6,41 +6,33 @@
   </div>
   <div class="container-nav">
     <a href="/home">Home</a>
-    <a href="/about">About</a>
+    <a href="/category">Category</a>
     <a href="/contact">Contact Us</a>
   </div>
 
   <div class="container-menu">
-    <div>
+    <div *ngIf="isLoggedIn; else loggedOutTemplate">
       <a nz-dropdown [nzDropdownMenu]="menu">
-        <i class="fa-regular fa-user icon-user"></i>
+        <p>{{ username }}</p>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
           <li nz-menu-item>Trang cá nhân</li>
-          <li nz-menu-item>Trợ giúp</li>
+          <li nz-menu-item>Đơn hàng</li>
           <li nz-menu-divider></li>
           <li nz-menu-item>
-            <a href="/" (click)="logOut()">Đăng xuất</a>
+            <a href="/login" (click)="logOut()">Đăng xuất</a>
           </li>
         </ul>
       </nz-dropdown-menu>
     </div>
 
+    <ng-template #loggedOutTemplate>
+      <button type="button" class="btn-login" [routerLink]="['/login']">Đăng nhập</button>
+    </ng-template>
+
     <i class="fa-solid fa-cart-shopping" [routerLink]="['/cart']"></i>
 
-    <div >
-      <a nz-dropdown [nzDropdownMenu]="menuIcon">
-        <i class="fa-solid fa-bars"></i>
-      </a>
-      <nz-dropdown-menu #menuIcon="nzDropdownMenu">
-        <ul nz-menu nzSelectable>
-          <li nz-menu-item>1st menu item</li>
-          <li nz-menu-item>2nd menu item</li>
-          <li nz-menu-item>3rd menu item</li>
-        </ul>
-      </nz-dropdown-menu>
-    </div>
   </div>
 </div>
 

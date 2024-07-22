@@ -27,7 +27,13 @@ export class ManagementComponent implements OnInit {
       })
   }
 
-  onDelete() {
+  onDelete(id: string) {
+    this.fashionService.deleteAccount(id).subscribe( data => {
+      this.allAccount = this.allAccount.filter(item => item._id !== id);
+    })
+  }
+
+  showConfirm() {
 
   }
 }

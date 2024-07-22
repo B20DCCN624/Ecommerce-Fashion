@@ -37,6 +37,7 @@
   border-radius: 4px;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 .btn-add {
   margin-bottom: 20px;

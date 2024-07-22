@@ -87,7 +87,7 @@ export class CheckoutComponent implements OnInit {
           this.totalPrice();
         });
       } else {
-        this.router.navigate(['/noti']);
+        this.router.navigate(['/about']);
       }
     }
   }

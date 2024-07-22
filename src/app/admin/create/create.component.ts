@@ -63,14 +63,14 @@ export class CreateComponent implements  OnInit{
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (!token) {
-        this.router.navigate(['/noti']);
+        this.router.navigate(['/home']);
         return;
       }
 
       const decodedToken: any = decodeJWT(token);
       if (decodedToken.role !== 'admin') {
         console.log(decodedToken.role);
-        this.router.navigate(['/noti']);
+        this.router.navigate(['/home']);
       }
     }
   }

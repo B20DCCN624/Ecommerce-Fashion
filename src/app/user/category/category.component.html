@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card-container">
+    <nz-tabset nzType="card">
+      <nz-tab *ngFor="let category of categories" [nzTitle]="category">
+
+        <div class="content-product">
+          <div class="item-content" *ngFor="let item of getProductByCategory(category) ">
+            <div [routerLink]="['/detail', item._id]">
+              <img src="{{ item.image }}" alt="" />
+              <div class="item-title">{{ item.name }}</div>
+              <div class="item-price">
+                <div class="old-price">${{ item.oldPrice }}.00</div>
+                <div class="new-price">${{ item.newPrice }}.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
