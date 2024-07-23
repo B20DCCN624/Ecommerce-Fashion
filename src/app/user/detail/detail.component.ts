@@ -12,6 +12,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { OrderItem } from '../../orderItem';
 
 
 @Component({
@@ -91,9 +92,20 @@ export class DetailComponent implements OnInit{
         quantity: 1,
         total: Number(this.formData.newPrice) * 1,
       };
+
+      const orderItem: OrderItem = {
+        _id:'',
+        name: this.formData.name,
+        price: this.formData.newPrice,
+        image: this.formData.image,
+      }
       this.fashionService.addToCart(cartItem).subscribe( data => {
         console.log(data);
         this.router.navigate(['/cart']);
+      })
+
+      this.fashionService.addToOrder(orderItem).subscribe( data => {
+
       })
     }
   }

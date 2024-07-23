@@ -6,6 +6,7 @@ import { Account } from './account';
 import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { Order } from './order';
+import { OrderItem } from './orderItem';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,15 @@ export class FashionService {
     return this.httpClient.get<Fashion>(`http://localhost:3000/edit/${id}`);
   }
 
+  //OrderItem
+  addToOrder(data: OrderItem) {
+    return this.httpClient.post<Fashion>('http://localhost:3000/addtoorder', data);
+  }
+
+  getAllOrder() {
+    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllOrderItem');
+  }
+
   //Cart
   addToCart(data: CartItem) {
     return this.httpClient.post<Fashion>('http://localhost:3000/addtocart', data);
@@ -92,6 +102,13 @@ export class FashionService {
 
   clearData() {
     return this.httpClient.delete<CartItem>('http://localhost:3000/clearCart');
+  }
+
+  updateCart(data: CartItem) {
+    return this.httpClient.put<CartItem>('http://localhost:3000/updateCart', {
+      _id: data._id,
+      quantity: data.quantity
+    });
   }
 
   //Login

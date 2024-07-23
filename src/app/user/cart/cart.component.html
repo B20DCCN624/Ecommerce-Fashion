@@ -24,7 +24,13 @@
         </td>
         <td class="title-table">{{ item.name }}</td>
         <td>${{ item.price }}.00</td>
-        <td><input type="number" class="input-table" value="1" min="1" /></td>
+        <td>
+          <div class="quantity-controls">
+            <button class="btn-decrease" (click)="decreaseQuantity(item)">-</button>
+            <input type="number" class="input-table" [(ngModel)]="item.quantity" value="1" min="1" />
+            <button class="btn-increase" (click)="increaseQuantity(item)">+</button>
+          </div>
+        </td>
         <td>${{ item.total }}.00</td>
       </tr>
     </tbody>

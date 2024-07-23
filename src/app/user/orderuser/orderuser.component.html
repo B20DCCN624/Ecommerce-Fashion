@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Đơn hàng</h2>
+  <div class="content" *ngFor="let item of allCart; let i = index">
+    <div class="content-item">
+      <div class="stt">{{ i + 1 }}</div>
+      <img src="{{ item.image }}" alt="" class="item-image">
+      <div class="item-name">{{ item.name }}</div>
+      <div class="price">${{ item.price }}.00</div>
+      <div class="btn-order">
+        <button class="btn-comment" type="button">Đánh giá</button>
+        <button class="btn-repurchase" type="button">Mua lại</button>
+      </div>
+    </div>
+  </div>
+</div>

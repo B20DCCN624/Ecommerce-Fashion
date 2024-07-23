@@ -15,6 +15,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 24px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .container-nav {
@@ -26,10 +27,15 @@
   color: #000000;
   margin-right: 28px;
   text-transform: uppercase;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.container-nav a:hover {
-  color: #024E82;
+.container-nav a.active-link {
+  color: #f7002d;
+}
+
+.container-nav a:focus {
+  color: #f7002d;
 }
 
 .container p {

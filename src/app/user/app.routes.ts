@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from '../admin/admin/admin.component';
 import { EditComponent } from '../admin/edit/edit.component';
 import { CategoryComponent } from './category/category.component';
+import { OrderuserComponent } from './orderuser/orderuser.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -26,4 +27,5 @@ export const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'category', component: CategoryComponent},
+  {path: 'order', component: OrderuserComponent},
 ];

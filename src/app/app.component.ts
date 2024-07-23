@@ -5,8 +5,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { FashionService } from './fashion.service';
-import { Account } from './account';
-import { Fashion } from './fashion';
 import { filter } from 'rxjs';
 
 @Component({

@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FashionService } from '../../fashion.service';
 import { CartItem } from '../../cart';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
     NzMenuModule,
     NzBreadCrumbModule,
     RouterLink,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
@@ -41,6 +44,31 @@ export class CartComponent implements OnInit {
       }
     }
 
+  }
+
+  decreaseQuantity(item: CartItem) {
+    if(Number(item.quantity) > 1) {
+      item.quantity = Number(item.quantity) - 1;
+      this.updateTotal(item);
+      this.updateCartItem(item);
+    }
+  }
+
+  increaseQuantity(item: CartItem) {
+    item.quantity = Number(item.quantity) + 1;
+    this.updateTotal(item);
+    this.updateCartItem(item);
+  }
+
+  updateTotal(item: CartItem): void {
+    item.total = Number(item.price) * Number(item.quantity);
+    this.totalPrice();
+  }
+
+  updateCartItem(item: CartItem) {
+    this.fashionService.updateCart(item).subscribe( data => {
+
+    })
   }
 
   totalPrice() {

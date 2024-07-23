@@ -7,7 +7,6 @@ import { LoginComponent } from "../../user/login/login.component";
 import { RegisterComponent } from "../../user/register/register.component";
 import { HomeComponent } from "../../user/home/home.component";
 import { ProductComponent } from "../product/product.component";
-import { filter } from 'rxjs';
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { OrderComponent } from "../order/order.component";
 import { ManagementComponent } from '../management/management.component';
@@ -32,7 +31,14 @@ import { ManagementComponent } from '../management/management.component';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit{
-  selectedTab = 0;
+  selectedTab: number = 0;
+  tabs = [
+    { title: 'All product', component: 'app-product' },
+    { title: 'Order', component: 'app-order' },
+    { title: 'Management', component: 'app-management' },
+    { title: 'Dashboard', component: 'app-dashboard' },
+    { title: 'LogOut', component: null }
+  ];
 
   constructor(
     private router: Router,
@@ -41,7 +47,7 @@ export class AdminComponent implements OnInit{
 
   onTabChange(index: number): void {
     this.selectedTab = index;
-    if(index === 5) {
+    if(this.selectedTab == 4) {
       this.logOut();
     }
   }

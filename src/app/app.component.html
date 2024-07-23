@@ -5,9 +5,9 @@
     <a href="/home"><p>North Start</p></a>
   </div>
   <div class="container-nav">
-    <a href="" [routerLink]="['/home']">Home</a>
-    <a href="" [routerLink]="['/category']">Category</a>
-    <a href="" [routerLink]="['/contact']">Contact Us</a>
+    <a href="" [routerLink]="['/home']" routerLinkActive="active-link">Home</a>
+    <a href="" [routerLink]="['/category']" routerLinkActive="active-link">Category</a>
+    <a href="" [routerLink]="['/contact']" routerLinkActive="active-link">Contact Us</a>
   </div>
 
   <div class="container-menu">
@@ -18,7 +18,7 @@
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul nz-menu>
           <li nz-menu-item>Trang cá nhân</li>
-          <li nz-menu-item>Đơn hàng</li>
+          <li nz-menu-item [routerLink]="['/order']">Đơn hàng</li>
           <li nz-menu-divider></li>
           <li nz-menu-item>
             <a href="" (click)="logOut()" [routerLink]="['/home']">Đăng xuất</a>

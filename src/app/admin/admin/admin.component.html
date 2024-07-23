@@ -1,33 +1,21 @@
 <div class="card-container">
   <nz-tabset nzType="card" [nzTabPosition]="'left'" (nzSelectedIndexChange)="onTabChange($event)">
-    <nz-tab nzTitle="All product">
-      <ng-container *ngIf="selectedTab === 0">
-        <app-product></app-product>
+    <nz-tab *ngFor="let tab of tabs; let i = index" [nzTitle]="tab.title">
+      <ng-container *ngIf="selectedTab === i">
+        <ng-container *ngIf="tab.component === 'app-product'">
+          <app-product></app-product>
+        </ng-container>
+        <ng-container *ngIf="tab.component === 'app-order'">
+          <app-order></app-order>
+        </ng-container>
+        <ng-container *ngIf="tab.component === 'app-management'">
+          <app-management></app-management>
+        </ng-container>
+        <ng-container *ngIf="tab.component === 'app-dashboard'">
+          <app-dashboard></app-dashboard>
+        </ng-container>
+        <ng-container *ngIf="tab.component === null"> </ng-container>
       </ng-container>
-    </nz-tab>
-    <nz-tab nzTitle="All product">
-      <ng-container *ngIf="selectedTab === 1">
-        <app-product></app-product>
-      </ng-container>
-    </nz-tab>
-    <nz-tab nzTitle="Order">
-      <ng-container *ngIf="selectedTab === 2">
-        <app-order></app-order>
-      </ng-container>
-    </nz-tab>
-    <nz-tab nzTitle="Management">
-      <ng-container *ngIf="selectedTab === 3">
-        <app-management></app-management>
-      </ng-container>
-    </nz-tab>
-    <nz-tab nzTitle="Dashboard">
-      <ng-container *ngIf="selectedTab === 4">
-        <app-dashboard></app-dashboard>
-      </ng-container>
-    </nz-tab>
-    <nz-tab nzTitle="LogOut">
     </nz-tab>
   </nz-tabset>
 </div>
-
-
