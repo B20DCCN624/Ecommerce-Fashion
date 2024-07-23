@@ -19,11 +19,13 @@
         <td>{{ item.phone }}</td>
         <td>{{ item.email }}</td>
         <td class="total-price">${{ item.total }}</td>
-        <td>
-          <select name="order" id="order" class="select-order">
-            <option value="pending" selected>Pending</option>
-            <option value="approved">Approved</option>
-          </select>
+        <td class="action">
+          <div>
+            <button type="button" class="btn-approved">Chấp nhận</button>
+          </div>
+          <div>
+            <button type="button" class="btn-pending">Hủy</button>
+          </div>
         </td>
       </tr>
     </tbody>
