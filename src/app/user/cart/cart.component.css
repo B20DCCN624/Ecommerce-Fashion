@@ -117,3 +117,8 @@
   background-color: #ed7c35;
   transform: scale(1.05);
 }
+
+.checkout-btn:disabled {
+  background-color: #DDDDDD;
+  color: black;
+}

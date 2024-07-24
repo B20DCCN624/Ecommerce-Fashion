@@ -11,7 +11,7 @@
 
   <div>
     <label for="rating">Rating:</label>
-    <input type="number" id="rating" [(ngModel)]="formData.rating" class="form-control" formControlName="rating">
+    <input type="number" id="rating" [(ngModel)]="formData.rating" class="form-control" formControlName="rating" max="5">
 
     <div *ngIf="rating?.invalid && (rating?.dirty || rating?.touched)" class="error-message">
       <div *ngIf="rating?.errors?.['required']">Rating không được để trống</div>
@@ -37,7 +37,7 @@
   </div>
 
   <div>
-    <label for="description">Description:</label>
+    <label for="description">Description*:</label>
     <textarea id="description" [(ngModel)]="formData.description" class="form-control" formControlName="description"></textarea>
 
     <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="error-message">

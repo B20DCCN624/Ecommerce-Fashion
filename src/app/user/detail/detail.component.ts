@@ -13,6 +13,8 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { OrderItem } from '../../orderItem';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Review } from '../../review';
 
 
 @Component({
@@ -25,33 +27,23 @@ import { OrderItem } from '../../orderItem';
     NzListModule,
     CommonModule,
     RouterLink,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css',
   providers: [FashionService]
 })
 export class DetailComponent implements OnInit{
-  data = [
-    {
-      author: 'Cr7',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content:
-        'We supply a series of design principles, practical patterns and high quality design resources' +
-        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      datetime: formatDistance(new Date(), addDays(new Date(), 1))
-    },
-    {
-      author: 'Han Solo',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content:
-        'We supply a series of design principles, practical patterns and high quality design resources' +
-        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      datetime: formatDistance(new Date(), addDays(new Date(), 2))
-    }
-  ];
 
   formData!: Fashion | undefined;
+  allReview: Review [] = []
+  dataReview: Review = {
+    name: 'admin',
+    image: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    comment: ''
+  }
 
   constructor(
     private fashionService: FashionService,
@@ -59,6 +51,10 @@ export class DetailComponent implements OnInit{
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {};
+
+  commentForm: FormGroup = new FormGroup({
+    comment: new FormControl('', [Validators.required])
+  })
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -68,6 +64,8 @@ export class DetailComponent implements OnInit{
           let id = String(param.get('id'));
           this.getById(id);
         })
+
+        this.loadReviews();
       } else {
         this.router.navigate(['/about']);
       }
@@ -86,6 +84,7 @@ export class DetailComponent implements OnInit{
     if(this.formData) {
       const cartItem: CartItem = {
         _id:'',
+        id: this.formData._id,
         name: this.formData.name,
         price: this.formData.newPrice,
         image: this.formData.image,
@@ -95,18 +94,54 @@ export class DetailComponent implements OnInit{
 
       const orderItem: OrderItem = {
         _id:'',
+        id: this.formData._id,
         name: this.formData.name,
         price: this.formData.newPrice,
         image: this.formData.image,
       }
-      this.fashionService.addToCart(cartItem).subscribe( data => {
+      //
+      this.fashionService.getCartItemById(this.formData._id).subscribe( data => {
+        if(data) {
+          data.quantity = Number(data.quantity) + 1;
+          data.total = Number(data.quantity) * Number(data.price);
+          this.fashionService.updateCart(data).subscribe( data => {
+            this.router.navigate(['/cart']);
+          })
+        } else {
+          this.fashionService.addToCart(cartItem).subscribe( data => {
+            console.log(data);
+            this.router.navigate(['/cart']);
+          })
+        }
+      })
+      //
+      this.fashionService.getOrderById(this.formData._id).subscribe(existingItem => {
+        if (!existingItem) {
+          this.fashionService.addToOrder(orderItem).subscribe(data => {
+            console.log(data);
+          });
+        } else {
+          console.log('Item already exists in the order.');
+        }
+      });
+
+      this.fashionService.addToOrder(orderItem).subscribe(data => {
         console.log(data);
-        this.router.navigate(['/cart']);
-      })
-
-      this.fashionService.addToOrder(orderItem).subscribe( data => {
-
-      })
+      });
     }
+  }
+
+  loadReviews() {
+    this.fashionService.getAllReview().subscribe( data => {
+      this.allReview = data;
+    })
+  }
+
+  onSubmit() {
+    this.fashionService.addReview(this.dataReview).subscribe( data => {
+      console.log(data);
+      this.dataReview.comment = '';
+      this.loadReviews();
+    })
   }
 }

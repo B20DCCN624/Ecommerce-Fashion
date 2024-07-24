@@ -51,17 +51,28 @@
           lack of face to face communication and information being wide spread instead to a selective audience.</p>
       </nz-tab>
       <nz-tab nzTitle="Reviews">
-        <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
-          <ng-template #item let-item>
-            <nz-comment [nzAuthor]="item.author" [nzDatetime]="item.datetime">
-              <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
-              <nz-comment-content>
-                <p>{{ item.content }}</p>
-              </nz-comment-content>
-              <nz-comment-action>Reply to</nz-comment-action>
-            </nz-comment>
-          </ng-template>
-        </nz-list>
+        <div class="comment">
+          <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <div class="content-cmt">
+              <h4>Đánh giá sản phẩm</h4>
+              <textarea id="comment" class="form-control" [(ngModel)]="dataReview.comment" formControlName="comment"></textarea>
+            </div>
+            <button class="btn-comment" type="submit">Bình luận</button>
+          </form>
+          <div class="comment-detail">
+            <nz-list [nzDataSource]="allReview" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+              <ng-template #item let-item>
+                <nz-comment [nzAuthor]="item.name">
+                  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.image"></nz-avatar>
+                  <nz-comment-content>
+                    <p>{{ item.comment }}</p>
+                  </nz-comment-content>
+                  <nz-comment-action>Reply to</nz-comment-action>
+                </nz-comment>
+              </ng-template>
+            </nz-list>
+          </div>
+        </div>
       </nz-tab>
     </nz-tabset>
   </div>

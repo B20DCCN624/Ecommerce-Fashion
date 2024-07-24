@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { Order } from './order';
 import { OrderItem } from './orderItem';
+import { Review } from './review';
 
 @Injectable({
   providedIn: 'root'
@@ -83,8 +84,12 @@ export class FashionService {
     return this.httpClient.post<Fashion>('http://localhost:3000/addtoorder', data);
   }
 
+  getOrderById(id: String) {
+    return this.httpClient.get<OrderItem>(`http://localhost:3000/getOrderItemById/${id}`)
+  }
+
   getAllOrder() {
-    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllOrderItem');
+    return this.httpClient.get<OrderItem[]>('http://localhost:3000/getAllOrderItem');
   }
 
   //Cart
@@ -93,7 +98,15 @@ export class FashionService {
   }
 
   getAllCart() {
-    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllCart', this.getAuthHeaders());
+    return this.httpClient.get<CartItem[]>('http://localhost:3000/getAllCart');
+  }
+
+  getCartItemById(id: String) {
+    return this.httpClient.get<CartItem>(`http://localhost:3000/getCartItemById/${id}`);
+  }
+
+  updateCartItem(data : CartItem) {
+    return this.httpClient.put<CartItem>(`http://localhost:3000/updateCartItem/${data._id}`, data);
   }
 
   deleteItem(id: string) {
@@ -130,5 +143,14 @@ export class FashionService {
 
   deleteAccount(id: string) {
     return this.httpClient.delete<Account>(`http://localhost:3000/deleteAccount/${id}`);
+  }
+
+  //Review
+  addReview(data: Review) {
+    return this.httpClient.post<Review>('http://localhost:3000/review', data);
+  }
+
+  getAllReview() {
+    return this.httpClient.get<Review[]>('http://localhost:3000/getAllReview');
   }
 }

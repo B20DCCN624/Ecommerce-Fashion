@@ -35,7 +35,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="cart-totals">
+  <div class="cart-totals" >
     <h3>Cart Totals</h3>
     <table>
       <tr>
@@ -51,6 +51,6 @@
         <td class="bold">${{ total }}.00</td>
       </tr>
     </table>
-    <button class="checkout-btn" [routerLink]="['/checkout']">PROCEED TO CHECKOUT</button>
+    <button class="checkout-btn" [routerLink]="['/checkout']" [disabled]="!allCartItem || allCartItem.length === 0">PROCEED TO CHECKOUT</button>
   </div>
 </div>

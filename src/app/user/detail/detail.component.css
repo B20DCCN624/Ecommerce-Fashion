@@ -171,5 +171,52 @@
 }
 
 
+.comment {
+  display: flex;
+  width: 96%;
+  margin: 0 auto;
+}
+
+form {
+  width: 35%;
+}
+
+.content-cmt h4 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.content-cmt textarea {
+  max-height: 200px;
+  max-width: 100%;
+  width: 300px;
+  outline: none;
+  resize: vertical;
+  padding: 5px;
+}
+
+.btn-comment {
+  background-color: #024E82;
+  outline: none;
+  color: white;
+  border: 1px solid #DDDDDD;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 30px;
+  margin-top: 20px;
+}
+
+.comment-detail {
+  margin-left: 5%;
+  width: 60%;
+  height: 280px;
+  overflow-y: auto;
+}
+
+
+
+
 
 

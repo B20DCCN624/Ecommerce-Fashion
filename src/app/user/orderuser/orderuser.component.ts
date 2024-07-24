@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from '../../cart';
 import { FashionService } from '../../fashion.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderItem } from '../../orderItem';
 
 @Component({
   selector: 'app-orderuser',
@@ -11,13 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './orderuser.component.html',
   styleUrl: './orderuser.component.css'
 })
 export class OrderuserComponent implements OnInit{
-  allCart: CartItem [] = []
+  allOrder: OrderItem [] = []
 
   constructor(
     private fashionService: FashionService,
@@ -25,9 +26,8 @@ export class OrderuserComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-      this.fashionService.getAllOrder().subscribe( data => {
-        this.allCart = data;
-        // console.log(data);
-      })
+    this.fashionService.getAllOrder().subscribe( data => {
+      this.allOrder = data;
+    })
   }
 }
