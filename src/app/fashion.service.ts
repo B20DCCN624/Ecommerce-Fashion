@@ -53,6 +53,10 @@ export class FashionService {
     return this.httpClient.get<Fashion[]>(`http://localhost:3000/searchByName?name=${name}`);
   }
 
+  updateProductQuantity(data: CartItem[]) {
+    return this.httpClient.put<Fashion>(`http://localhost:3000/updateProductQuantity`, data);
+  }
+
   //Order
   addOrder(data : Order) {
     return this.httpClient.post<Order>('http://localhost:3000/order', data);

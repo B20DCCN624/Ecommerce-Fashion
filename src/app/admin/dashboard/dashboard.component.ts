@@ -1,12 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApexDataLabels, ApexStroke, NgxApexchartsModule } from 'ngx-apexcharts';
+import { NgxApexchartsModule } from 'ngx-apexcharts';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 import {
   ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
+  ApexTitleSubtitle,
+  ApexResponsive,
+  ApexLegend,
+  ApexGrid,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexDataLabels,
+  ApexNonAxisChartSeries,
+  ApexStroke,
+  ApexFill,
+  ApexAnnotations,
   ApexXAxis,
-  ApexTitleSubtitle
 } from "ng-apexcharts";
 import { FashionService } from '../../fashion.service';
 import { Fashion } from '../../fashion';
@@ -18,11 +29,20 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
 };
 
+export type PieChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
+
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    NgxApexchartsModule
+    NgxApexchartsModule,
+    NzTabsModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -30,6 +50,8 @@ export type ChartOptions = {
 export class DashboardComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+  public pieChartOptions: Partial<PieChartOptions>;
+  public columnChartOptions: Partial<ChartOptions>;
 
   constructor(private fashionService: FashionService) {
     this.chartOptions = {
@@ -44,7 +66,48 @@ export class DashboardComponent implements OnInit {
         type: "area"
       },
       title: {
-        text: "Category Chart"
+        text: "Quantity Chart"
+      },
+      xaxis: {
+        categories: []
+      }
+    };
+
+    this.pieChartOptions = {
+      series: [],
+      chart: {
+        width: 600,
+        type: "pie"
+      },
+      labels: [],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+
+    this.columnChartOptions = {
+      series: [
+        {
+          name: "My-series",
+          data: []
+        }
+      ],
+      chart: {
+        height: 500,
+        type: "line"
+      },
+      title: {
+        text: "Sold Chart"
       },
       xaxis: {
         categories: []
@@ -53,10 +116,12 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.fetchData();
+      this.chartData();
+      this.pieChartData();
+      this.columnChartData();
   }
 
-  fetchData() {
+  chartData() {
     this.fashionService.getAllFashion().subscribe(data => {
       //lưu trữ tổng số lượng sản phẩm
       const categoryMap: { [key: string]: number } = {};
@@ -88,6 +153,61 @@ export class DashboardComponent implements OnInit {
           categories: categories
         }
       };
+    })
+  }
+
+  pieChartData() {
+    this.fashionService.getAllFashion().subscribe( data => {
+      const categoryMap: { [key: string] :number} = {}
+
+      data.forEach( (item: Fashion) => {
+        if(categoryMap[item.category]) {
+          categoryMap[item.category] += item.sold;
+        } else {
+          categoryMap[item.category] = item.sold;
+        }
+      })
+
+      const categories = Object.keys(categoryMap);
+      const sold = Object.values(categoryMap);
+
+      // Cập nhật dữ liệu cho biểu đồ
+      this.pieChartOptions = {
+        ...this.pieChartOptions,
+        series: sold,
+        labels: categories,
+      }
+    })
+  }
+
+  columnChartData() {
+    this.fashionService.getAllFashion().subscribe( data => {
+      const categoryMap: { [key: string] :number} = {}
+
+      data.forEach( (item: Fashion) => {
+        if(categoryMap[item.category]) {
+          categoryMap[item.category] += item.sold;
+        } else {
+          categoryMap[item.category] = item.sold;
+        }
+      })
+
+      const categories = Object.keys(categoryMap);
+      const sold = Object.values(categoryMap);
+
+      // Cập nhật dữ liệu cho biểu đồ
+      this.columnChartOptions = {
+        ...this.columnChartOptions,
+        series: [
+          {
+            name: "Số lượng sản phẩm",
+            data: sold
+          }
+        ],
+        xaxis: {
+          categories: categories
+        }
+      }
     })
   }
 }

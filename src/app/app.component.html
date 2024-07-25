@@ -31,7 +31,10 @@
       <button type="button" class="btn-login" [routerLink]="['/login']">Đăng nhập</button>
     </ng-template>
 
-    <i class="fa-solid fa-cart-shopping" [routerLink]="['/cart']"></i>
+    <nz-badge [nzCount]="this.allCart.length">
+      <i class="fa-solid fa-cart-shopping" [routerLink]="['/cart']"></i>
+      <!-- <a class="head-example"></a> -->
+    </nz-badge>
 
   </div>
 </div>

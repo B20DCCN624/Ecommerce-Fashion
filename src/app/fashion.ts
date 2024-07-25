@@ -8,4 +8,5 @@ export interface Fashion {
   image: String,
   quantity: number,
   category: string,
+  sold: number
 }

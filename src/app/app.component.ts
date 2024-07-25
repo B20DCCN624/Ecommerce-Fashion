@@ -6,6 +6,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { FashionService } from './fashion.service';
 import { filter } from 'rxjs';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { CartItem } from './cart';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,8 @@ import { filter } from 'rxjs';
     NzMenuModule,
     RouterLink,
     CommonModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzBadgeModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -24,6 +27,7 @@ import { filter } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Ecommerce-Fashion';
 
+  allCart: CartItem [] = []
   isLoggedIn: boolean = false;
   username: string = '';
 
@@ -51,6 +55,10 @@ export class AppComponent implements OnInit {
       ).subscribe(() => {
         this.checkLoginStatus();
       });
+
+      this.fashionService.getAllCart().subscribe(data => {
+        this.allCart = data;
+      })
     }
   }
 

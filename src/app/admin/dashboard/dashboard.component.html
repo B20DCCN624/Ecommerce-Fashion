@@ -1,8 +1,33 @@
-<div style="text-align:center" class="container">
-  <apx-chart
-    [series]="chartOptions.series!"
-    [chart]="chartOptions.chart!"
-    [xaxis]="chartOptions.xaxis!"
-    [title]="chartOptions.title!"
-  ></apx-chart>
-</div>
+<nz-tabset>
+  <nz-tab nzTitle="Quantity Chart">
+    <div class="area-chart">
+      <apx-chart
+        [series]="chartOptions.series!"
+        [chart]="chartOptions.chart!"
+        [xaxis]="chartOptions.xaxis!"
+        [title]="chartOptions.title!"
+      ></apx-chart>
+    </div>
+  </nz-tab>
+  <nz-tab nzTitle="Sold Pie Chart">
+    <p>Sold Pie Chart</p>
+    <div class="pie-chart">
+      <apx-chart
+        [series]="pieChartOptions.series!"
+        [chart]="pieChartOptions.chart!"
+        [labels]="pieChartOptions.labels"
+        [responsive]="pieChartOptions.responsive!"
+      ></apx-chart>
+    </div>
+  </nz-tab>
+  <nz-tab nzTitle="Sold Line Chart">
+    <div class="line-chart">
+      <apx-chart
+        [series]="columnChartOptions.series!"
+        [chart]="columnChartOptions.chart!"
+        [xaxis]="columnChartOptions.xaxis!"
+        [title]="columnChartOptions.title!"
+      ></apx-chart>
+    </div>
+  </nz-tab>
+</nz-tabset>

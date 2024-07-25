@@ -55,6 +55,10 @@ export class CheckoutComponent implements OnInit {
 
   showConfirm() {
     this.formData.total = this.total;
+    //update quantity, sold
+    this.fashionService.updateProductQuantity(this.allCartItem).subscribe( () => {
+
+    })
     this.fashionService.addOrder(this.formData).subscribe( data => {
       // console.log(data);
       this.orderForm.reset();

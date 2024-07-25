@@ -57,6 +57,7 @@ export class CreateComponent implements  OnInit{
     image: '',
     quantity: 0,
     category: '',
+    sold: 0,
   }
 
   ngOnInit(): void {
