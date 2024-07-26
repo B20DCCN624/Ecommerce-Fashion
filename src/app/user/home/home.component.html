@@ -1,4 +1,12 @@
 <div class="container" >
+  <div class="banner">
+    <div class="banner-slide" *ngFor="let banner of banners; let i = index" [ngClass]="{'active': i === currentBannerIndex}">
+      <img [src]="banner.image" alt="Banner {{i + 1}}">
+    </div>
+    <button class="prev" (click)="prevBanner()">❮</button>
+    <button class="next" (click)="nextBanner()">❯</button>
+  </div>
+
   <div class="search-item">
     <form (ngSubmit)="onSubmit()">
       <input type="text" name="search" placeholder="Search" [(ngModel)]="productName">

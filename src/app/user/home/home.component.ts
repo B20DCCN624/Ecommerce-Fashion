@@ -30,6 +30,14 @@ export class HomeComponent implements OnInit{
   p: number = 1;
   productName: string = '';
 
+  banners: {image: string} [] = [
+    { image: 'assets/banner1.png' },
+    { image: 'assets/banner2.png' },
+    { image: 'assets/banner3.jpg' }
+  ]
+  currentBannerIndex: number = 0;
+  bannerInterval: any;
+
   constructor(
     private fashionService: FashionService,
     private router: Router,
@@ -44,21 +52,14 @@ export class HomeComponent implements OnInit{
     this.fashionService.getTopSeller().subscribe( data => {
       this.allTopSeller = data;
     })
-    // if (isPlatformBrowser(this.platformId)) {
-    //   const token = localStorage.getItem('token');
-    //   if(token) {
-    //     this.fashionService.getAllFashion().subscribe( data => {
-    //       this.allFashion = data;
-    //     })
+  }
 
-    //     this.fashionService.getTopSeller().subscribe( data => {
-    //       this.allTopSeller = data;
-    //     })
-    //   }
-    //   else {
-    //     this.router.navigate(['/noti']);
-    //   }
-    // }
+  prevBanner() {
+    this.currentBannerIndex = (this.currentBannerIndex - 1 + this.banners.length) % this.banners.length;
+  }
+
+  nextBanner() {
+    this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
   }
 
   //Search by name
