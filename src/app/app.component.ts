@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
     this.username = ''
     this.isLoggedIn = false
     this.cd.detectChanges()
+    this.updateCart();
   }
 
   ngOnInit(): void {
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit {
         filter(event => event instanceof NavigationEnd)
       ).subscribe(() => {
         this.checkLoginStatus();
+        this.updateCart();
       });
 
       this.fashionService.getAllCart().subscribe(data => {
@@ -75,5 +77,12 @@ export class AppComponent implements OnInit {
         this.cd.detectChanges() // Cập nhật lại giao diện sau khi kiểm tra trạng thái đăng nhập
       })
     }
+  }
+
+  private updateCart() {
+    this.fashionService.getAllCart().subscribe( data => {
+      this.allCart = data;
+      this.cd.detectChanges();
+    })
   }
 }
